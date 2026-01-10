@@ -378,6 +378,59 @@ translate_chinese_comments() {
     # Translate specific host line example
     sed -i 's|# ssid:wifi名称 = server:1.2.3.4|# ssid:WiFi_Name = server:1.2.3.4|' "$OUTPUT_FILE"
 
+    # Translate Proxy Example Fields (Global replace for common terms in examples)
+    # Note: Using direct Chinese characters as they appear in the file
+    sed -i 's|节点名称|Name|g' "$OUTPUT_FILE"
+    sed -i 's|地址|Address|g' "$OUTPUT_FILE"
+    sed -i 's|端口|Port|g' "$OUTPUT_FILE"
+    sed -i 's|用户|User|g' "$OUTPUT_FILE"
+    sed -i 's|密码|Password|g' "$OUTPUT_FILE"
+    sed -i 's|其他参数|Params|g' "$OUTPUT_FILE"
+    sed -i 's|如|e.g.|g' "$OUTPUT_FILE"
+    sed -i 's|混淆|Obfs|g' "$OUTPUT_FILE"
+    sed -i 's|协议|Protocol|g' "$OUTPUT_FILE"
+    sed -i 's|私钥|PrivateKey|g' "$OUTPUT_FILE"
+    sed -i 's|公钥|PublicKey|g' "$OUTPUT_FILE"
+    sed -i 's|子网IP|SubnetIP|g' "$OUTPUT_FILE"
+    sed -i 's|uuid值|UUID|g' "$OUTPUT_FILE"
+
+    # Translate Proxy Group Names (Global replace to update definitions and references)
+    sed -i 's|香港节点|HK_Nodes|g' "$OUTPUT_FILE"
+    sed -i 's|台湾节点|TW_Nodes|g' "$OUTPUT_FILE"
+    sed -i 's|日本节点|JP_Nodes|g' "$OUTPUT_FILE"
+    sed -i 's|新加坡节点|SG_Nodes|g' "$OUTPUT_FILE"
+    sed -i 's|韩国节点|KR_Nodes|g' "$OUTPUT_FILE"
+    sed -i 's|美国节点|US_Nodes|g' "$OUTPUT_FILE"
+    
+    sed -i 's|苹果服务|Apple_Services|g' "$OUTPUT_FILE"
+    sed -i 's|谷歌服务|Google_Services|g' "$OUTPUT_FILE"
+    sed -i 's|微软服务|Microsoft_Services|g' "$OUTPUT_FILE"
+    sed -i 's|游戏平台|Game_Services|g' "$OUTPUT_FILE"
+
+    # Translate Proxy Group Configuration Comments
+    sed -i 's|名称|Name|g' "$OUTPUT_FILE"
+    sed -i 's|类型|Type|g' "$OUTPUT_FILE"
+    sed -i 's|策略|Policy|g' "$OUTPUT_FILE"
+    sed -i 's|订阅名称|SubName|g' "$OUTPUT_FILE"
+    sed -i 's|代理分组|ProxyGroup|g' "$OUTPUT_FILE"
+    sed -i 's|节点|Node|g' "$OUTPUT_FILE"
+    sed -i 's|测试周期|Interval|g' "$OUTPUT_FILE"
+    sed -i 's|超时时间|Timeout|g' "$OUTPUT_FILE"
+    sed -i 's|公差|Tolerance|g' "$OUTPUT_FILE"
+    sed -i 's|指定选择的Node备注Name|SelectedNodeName|g' "$OUTPUT_FILE"
+    sed -i 's|默认Policy|Default|g' "$OUTPUT_FILE"
+    sed -i 's|0表示第一个Policy|0=First|g' "$OUTPUT_FILE"
+    sed -i 's|1表示第二个Policy|1=Second|g' "$OUTPUT_FILE"
+    sed -i 's|2表示第三个Policy|2=Third|g' "$OUTPUT_FILE"
+    sed -i 's|测试Address|TestURL|g' "$OUTPUT_FILE"
+    sed -i 's|正则式或关键词筛选|Regex/Keyword Filter|g' "$OUTPUT_FILE"
+    sed -i 's|多个订阅时,用逗号分隔|Comma separated|g' "$OUTPUT_FILE"
+    sed -i 's|省略该参数时,表示匹配对应订阅的全部Node|If omitted, matches all nodes|g' "$OUTPUT_FILE"
+    sed -i 's|订阅|Subscription|g' "$OUTPUT_FILE"
+    
+    # Fix leftover User Agent comment - replace entire line to be safe
+    sed -i 's|^# USER-AGENT：.*|# USER-AGENT: Match User-Agent string (supports * wildcard). e.g. "USER-AGENT,MicroMessenger*,DIRECT".|' "$OUTPUT_FILE"
+
     log_info "Translation complete"
 }
 
