@@ -218,7 +218,7 @@ add_header() {
 # Built: $timestamp
 # Base: LOWERTOP/Shadowrocket lazy_group.conf
 # Modifications: Privacy DNS, tracker/surveillance blocking, CN services removed
-# Source: https://github.com/YOUR_USERNAME/ShadowTree
+# Source: https://github.com/jbold/shadowtree
 #
 "
 
