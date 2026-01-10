@@ -15,7 +15,7 @@ thetradedesk.com
 pubmatic.com
 openx.com
 rubiconproject.com
-appnexus.com
+# appnexus.com - in isp-tracking.list (AT&T/Xandr)
 indexexchange.com
 spotx.tv
 smartadserver.com

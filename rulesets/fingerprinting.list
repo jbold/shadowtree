@@ -1,0 +1,32 @@
+# Browser Fingerprinting Services
+# Services that create unique device/browser fingerprints for tracking
+# Policy: REJECT
+
+# FingerprintJS / Fingerprint.com
+fingerprint.com
+fingerprintjs.com
+fpjs.io
+fpcdn.io
+fpjs.pro
+
+# Device Intelligence / Fraud Detection (also fingerprint)
+iovation.com
+threatmetrix.com
+# lexisnexis.com/risk - path not supported, risk division uses threatmetrix.com
+socure.com
+ekata.com
+
+# Canvas/WebGL Fingerprinting
+audienceproject.com
+# permutive.com - in advertising.list
+
+# Session Replay with Fingerprinting
+quantummetric.com
+contentsquare.com
+glassbox.com
+medalia.com
+
+# Cross-device Tracking / Identity Graphs
+# tapad.com - in data-brokers.list
+# crossix.com - in data-brokers.list
+signal.co

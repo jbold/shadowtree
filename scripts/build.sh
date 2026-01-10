@@ -224,6 +224,33 @@ simplify_for_blocker_mode() {
     log_info "Config simplified for blocker-only mode"
 }
 
+# Step 3.6: Remove external rule references and add our own LAN rules
+remove_external_rulesets() {
+    log_info "Removing external RULE-SET references (unvetted)..."
+
+    # Remove all external RULE-SET references (we maintain our own rules)
+    grep -v "^RULE-SET,http" "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp"
+    mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+
+    log_info "External RULE-SET references removed"
+
+    # Add our own minimal LAN rules (local network should always be DIRECT)
+    log_info "Adding local network rules..."
+
+    # Insert LAN rules at the start of [Rule] section
+    sed -i '/^\[Rule\]$/a \
+# shadowtree: Local network (always direct)\
+IP-CIDR,192.168.0.0/16,DIRECT\
+IP-CIDR,10.0.0.0/8,DIRECT\
+IP-CIDR,172.16.0.0/12,DIRECT\
+IP-CIDR,127.0.0.0/8,DIRECT\
+IP-CIDR,100.64.0.0/10,DIRECT\
+DOMAIN-SUFFIX,local,DIRECT\
+DOMAIN-SUFFIX,localhost,DIRECT' "$OUTPUT_FILE"
+
+    log_info "Local network rules added"
+}
+
 # Step 4: Insert privacy rulesets
 insert_privacy_rulesets() {
     log_info "Inserting privacy blocking rules..."
@@ -239,6 +266,7 @@ insert_privacy_rulesets() {
         "analytics.list:REJECT"
         "telemetry.list:REJECT"
         "advertising.list:REJECT"
+        "fingerprinting.list:REJECT"
         "isp-tracking.list:REJECT-DROP"
     )
 
@@ -478,6 +506,7 @@ main() {
     remove_china_services
     translate_group_names        # Must run before simplify so patterns match
     simplify_for_blocker_mode
+    remove_external_rulesets     # Remove unvetted external rule lists, add our LAN rules
     insert_privacy_rulesets
     strip_comments
     add_section_docs
