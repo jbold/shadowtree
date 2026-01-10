@@ -44,6 +44,3 @@ To add new domains to the blocklist:
 2. Add a test case to `tests/rules/must_block.txt`.
 3. Run `./scripts/build.sh && ./scripts/test.sh`.
 4. Commit and push the changes.
-
-## Privacy Policy
-This project prioritizes user privacy. We use `REJECT-DROP` for high-risk surveillance domains to ensure silent blocking without notifying the remote server.
