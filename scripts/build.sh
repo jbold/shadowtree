@@ -46,6 +46,62 @@ fetch_upstream() {
     log_info "Upstream config saved to $UPSTREAM_FILE"
 }
 
+# Step 1.5: Automated Safety Audit
+safety_audit() {
+    log_info "Running safety audit on upstream config..."
+    local audit_errors=0
+
+    # 1. Check for suspicious IPs in Rules or Host (Allow 127.0.0.1, 0.0.0.0, private ranges)
+    # We grep for IPv4 patterns, then filter out known safe ones
+    # This is a basic heuristic to catch hardcoded proxy IPs
+    local suspicious_ips=$(grep -E "([0-9]{1,3}\.){3}[0-9]{1,3}" "$UPSTREAM_FILE" | \
+        grep -vE "^#" | \
+        grep -v "127\.0\.0\.1" | \
+        grep -v "0\.0\.0\.0" | \
+        grep -v "192\.168\." | \
+        grep -v "10\." | \
+        grep -v "172\.16\." | \
+        grep -v "223\.5\.5\.5" | \
+        grep -v "119\.29\.29\.29" | \
+        grep -v "8\.8\.8\.8" | \
+        grep -v "8\.8\.4\.4" | \
+        grep -v "1\.1\.1\.1" | \
+        grep -v "9\.9\.9\.9")
+
+    if [ -n "$suspicious_ips" ]; then
+        log_error "Audit Failed: Found suspicious IP addresses in upstream:"
+        echo "$suspicious_ips"
+        ((audit_errors++))
+    fi
+
+    # 2. Check for MITM Hostnames (Only allow known ones)
+    # Upstream usually includes *.google.cn. Anything else is suspicious.
+    local mitm_hosts=$(sed -n '/\[MITM\]/,/\[/p' "$UPSTREAM_FILE" | grep "hostname =" | cut -d'=' -f2)
+    for host in $mitm_hosts; do
+        host=$(echo "$host" | xargs) # trim whitespace
+        if [[ "$host" != "*.google.cn" && -n "$host" ]]; then
+             log_error "Audit Failed: Unknown MITM hostname found: $host"
+             ((audit_errors++))
+        fi
+    done
+
+    # 3. Check for URL Rewrites (Only allow known Google CN fix)
+    local rewrites=$(sed -n '/\[URL Rewrite\]/,/\[/p' "$UPSTREAM_FILE" | grep -vE "^\[|^\s*$|^#")
+    while IFS= read -r line; do
+        if [[ ! "$line" =~ google\.cn ]]; then
+             log_warn "Audit Warning: Unknown URL Rewrite found: $line"
+             # We assume warning for rewrites for now, as they might be benign fixes
+        fi
+    done <<< "$rewrites"
+
+    if [ $audit_errors -gt 0 ]; then
+        log_error "Safety audit failed with $audit_errors critical errors. Aborting build."
+        exit 1
+    fi
+
+    log_info "Safety audit passed"
+}
+
 # Step 2: Apply DNS override
 apply_dns_override() {
     log_info "Applying DNS override (Cloudflare + Quad9)..."
@@ -231,6 +287,9 @@ main() {
 
     # Fetch upstream
     fetch_upstream
+
+    # Automated Audit
+    safety_audit
 
     # Start with fresh copy
     cp "$UPSTREAM_FILE" "$OUTPUT_FILE"
