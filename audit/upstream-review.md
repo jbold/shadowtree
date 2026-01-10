@@ -3,7 +3,7 @@
 **Source**: LOWERTOP/Shadowrocket lazy_group.conf
 **URL**: https://lowertop.github.io/Shadowrocket/lazy_group.conf
 **Audit Date**: 2026-01-09
-**Auditor**: ShadowTree build system
+**Auditor**: shadowtree build system
 
 ---
 
@@ -19,7 +19,7 @@ For US-based privacy-focused users, several modifications are necessary (handled
 
 ### DNS Configuration
 
-**Status**: ⚠️ MODIFIED BY SHADOWTREE
+**Status**: ⚠️ MODIFIED BY shadowtree
 
 Original upstream DNS servers:
 - `https://doh.pub/dns-query` - Chinese DoH provider
@@ -47,7 +47,7 @@ This hijacks Google DNS queries to use the configured DNS instead. This is **goo
 
 ### Chinese Services (Direct Routing)
 
-**Status**: ⚠️ REMOVED BY SHADOWTREE
+**Status**: ⚠️ REMOVED BY shadowtree
 
 The following Chinese services were routed DIRECT (no proxy):
 - BiliBili (video streaming)
@@ -68,7 +68,7 @@ The following Chinese services were routed DIRECT (no proxy):
 
 ### GEOIP China Rule
 
-**Status**: ⚠️ REMOVED BY SHADOWTREE
+**Status**: ⚠️ REMOVED BY shadowtree
 
 ```
 GEOIP,CN,DIRECT
@@ -84,7 +84,7 @@ This routed all traffic to Chinese IPs directly (no proxy). Intended for users i
 
 ### skip-proxy Chinese Domains
 
-**Status**: ⚠️ REMOVED BY SHADOWTREE
+**Status**: ⚠️ REMOVED BY shadowtree
 
 Original skip-proxy included:
 - `*.ccb.com` - China Construction Bank

@@ -1,4 +1,4 @@
-# ShadowTree Project
+# shadowtree Project
 
 Shadowrocket config repo forked from LOWERTOP/Shadowrocket, hardened for US-based privacy-focused user.
 

@@ -1,6 +1,6 @@
-# ShadowTree
+# shadowtree
 
-ShadowTree is a privacy-hardened Shadowrocket configuration pipeline. It forks the popular `LOWERTOP` configuration and applies aggressive security modifications tailored for US-based, privacy-focused users.
+shadowtree is a privacy-hardened Shadowrocket configuration pipeline. It forks the popular `LOWERTOP` configuration and applies aggressive security modifications tailored for US-based, privacy-focused users.
 
 ## Features
 

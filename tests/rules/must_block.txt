@@ -1,4 +1,4 @@
-# Domains that MUST be blocked by ShadowTree config
+# Domains that MUST be blocked by shadowtree config
 # Format: domain,expected_policy,category
 # The test runner will verify these domains match REJECT or REJECT-DROP
 

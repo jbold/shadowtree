@@ -1,5 +1,5 @@
 #!/bin/bash
-# ShadowTree Test Script
+# shadowtree Test Script
 # Validates config syntax and rule assertions
 #
 # Usage: ./scripts/test.sh [config_file]
@@ -226,7 +226,7 @@ generate_report() {
     local report="$REPORT_DIR/test-report-$(date +%Y%m%d-%H%M%S).txt"
 
     {
-        echo "ShadowTree Test Report"
+        echo "shadowtree Test Report"
         echo "======================"
         echo "Date: $(date)"
         echo "Config: $CONFIG_FILE"
@@ -254,7 +254,7 @@ generate_report() {
 # Main test runner
 main() {
     echo "========================================"
-    echo "  ShadowTree Test Suite"
+    echo "  shadowtree Test Suite"
     echo "========================================"
     echo ""
     echo "Config: $CONFIG_FILE"

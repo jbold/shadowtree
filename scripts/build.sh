@@ -1,5 +1,5 @@
 #!/bin/bash
-# ShadowTree Build Script
+# shadowtree Build Script
 # Fetches upstream LOWERTOP config, applies privacy hardening, outputs final config
 #
 # Usage: ./scripts/build.sh
@@ -176,7 +176,7 @@ insert_privacy_rulesets() {
             log_info "  Adding rules from $filename ($policy)"
 
             # Add comment header
-            rules_to_insert+="\n# ShadowTree: ${filename%.list} blocking\n"
+            rules_to_insert+="\n# shadowtree: ${filename%.list} blocking\n"
 
             # Read each line and format as rule
             while IFS= read -r line || [ -n "$line" ]; do
@@ -209,12 +209,12 @@ insert_privacy_rulesets() {
     fi
 }
 
-# Step 5: Add ShadowTree header
+# Step 5: Add shadowtree header
 add_header() {
-    log_info "Adding ShadowTree header..."
+    log_info "Adding shadowtree header..."
 
     local timestamp=$(date "+%Y-%m-%d %H:%M:%S")
-    local header="# ShadowTree Privacy Config
+    local header="# shadowtree Privacy Config
 # Built: $timestamp
 # Base: LOWERTOP/Shadowrocket lazy_group.conf
 # Modifications: Privacy DNS, tracker/surveillance blocking, CN services removed
@@ -277,7 +277,7 @@ validate_syntax() {
 # Main build process
 main() {
     echo "========================================"
-    echo "  ShadowTree Build"
+    echo "  shadowtree Build"
     echo "========================================"
     echo ""
 
