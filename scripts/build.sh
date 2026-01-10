@@ -109,6 +109,7 @@ apply_dns_override() {
     # Read the new DNS settings
     local new_dns=$(grep "^dns-server = " "$DNS_OVERRIDE" | head -1)
     local new_fallback=$(grep "^fallback-dns-server = " "$DNS_OVERRIDE" | head -1)
+    local new_hijack=$(grep "^hijack-dns = " "$DNS_OVERRIDE" | head -1)
 
     # Replace dns-server line (Chinese DNS -> Privacy DNS)
     sed -i "s|^dns-server = .*|$new_dns|" "$OUTPUT_FILE"
@@ -116,6 +117,11 @@ apply_dns_override() {
     # Replace fallback-dns-server
     if [ -n "$new_fallback" ]; then
         sed -i "s|^fallback-dns-server = .*|$new_fallback|" "$OUTPUT_FILE"
+    fi
+
+    # Replace hijack-dns (intercept hardcoded DNS)
+    if [ -n "$new_hijack" ]; then
+        sed -i "s|^hijack-dns = .*|$new_hijack|" "$OUTPUT_FILE"
     fi
 
     log_info "DNS override applied"
