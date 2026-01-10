@@ -1,0 +1,40 @@
+# Location Data Brokers
+# Companies that buy/sell location data harvested from apps
+# Policy: REJECT-DROP
+
+# Major Location Data Companies
+safegraph.com
+placer.ai
+foursquare.com
+factual.com
+cuebiq.com
+near.com
+groundtruth.com
+gravy.com
+gravyanalytics.com
+veraset.com
+unacast.com
+locomizer.com
+
+# X-Mode / Outlogic
+xmode.io
+outlogic.io
+
+# Mobility Analytics
+streetlightdata.com
+replica.co
+inrix.com
+teralytics.ch
+tamoco.com
+
+# Retail Location Intelligence
+placed.com
+placed-inc.com
+reveal-mobile.com
+ninth-decimal.com
+
+# SDK-based Location Harvesting
+skyhook.com
+locationkit.io
+radar.com
+huq.io

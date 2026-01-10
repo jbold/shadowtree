@@ -1,0 +1,77 @@
+# Advertising & Cross-Site Tracking
+# Ad networks and retargeting (beyond what's in upstream Global list)
+# Policy: REJECT
+
+# Google Ad Network
+doubleclick.net
+googlesyndication.com
+googleadservices.com
+googleads.g.doubleclick.net
+pagead2.googlesyndication.com
+adservice.google.com
+
+# Programmatic Advertising
+thetradedesk.com
+pubmatic.com
+openx.com
+rubiconproject.com
+appnexus.com
+indexexchange.com
+spotx.tv
+smartadserver.com
+yieldmo.com
+33across.com
+
+# Retargeting Networks
+taboola.com
+outbrain.com
+adroll.com
+criteo.com
+steelhouse.com
+retargetlinks.com
+perfectaudience.com
+
+# Mobile Ad Networks
+applovin.com
+unityads.unity3d.com
+ironsrc.com
+vungle.com
+chartboost.com
+inmobi.com
+admob.com
+startapp.com
+tapjoy.com
+fyber.com
+
+# Native Advertising
+nativo.com
+sharethrough.com
+triplelift.com
+revcontent.com
+
+# Ad Verification & Fraud Detection (still tracking)
+doubleverify.com
+integralads.com
+moat.com
+pixalate.com
+whiteops.com
+
+# Data Management Platforms
+lotame.com
+permutive.com
+1plusx.com
+eyeota.com
+
+# Social Ad Networks (tracking pixels)
+ads.linkedin.com
+ads.twitter.com
+ads.pinterest.com
+ads.snapchat.com
+ads.tiktok.com
+business.facebook.com
+tr.facebook.com
+pixel.facebook.com
+
+# Header Bidding
+prebid.org
+a]d.org

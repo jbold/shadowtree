@@ -1,0 +1,41 @@
+# Domains that MUST be blocked by ShadowTree config
+# Format: domain,expected_policy,category
+# The test runner will verify these domains match REJECT or REJECT-DROP
+
+# Analytics - should be REJECT
+google-analytics.com,REJECT,analytics
+hotjar.com,REJECT,analytics
+mixpanel.com,REJECT,analytics
+fullstory.com,REJECT,analytics
+segment.io,REJECT,analytics
+amplitude.com,REJECT,analytics
+
+# Advertising - should be REJECT
+doubleclick.net,REJECT,advertising
+taboola.com,REJECT,advertising
+criteo.com,REJECT,advertising
+adroll.com,REJECT,advertising
+
+# Data Brokers - should be REJECT-DROP
+spokeo.com,REJECT-DROP,data-broker
+whitepages.com,REJECT-DROP,data-broker
+beenverified.com,REJECT-DROP,data-broker
+acxiom.com,REJECT-DROP,data-broker
+liveramp.com,REJECT-DROP,data-broker
+
+# Government Surveillance - should be REJECT-DROP
+palantir.com,REJECT-DROP,gov-surveillance
+clearview.ai,REJECT-DROP,gov-surveillance
+babelstreet.com,REJECT-DROP,gov-surveillance
+shadowdragon.io,REJECT-DROP,gov-surveillance
+
+# Location Brokers - should be REJECT-DROP
+safegraph.com,REJECT-DROP,location-broker
+placer.ai,REJECT-DROP,location-broker
+cuebiq.com,REJECT-DROP,location-broker
+gravy.com,REJECT-DROP,location-broker
+
+# Telemetry - should be REJECT
+telemetry.microsoft.com,REJECT,telemetry
+metrics.apple.com,REJECT,telemetry
+samsungads.com,REJECT,telemetry

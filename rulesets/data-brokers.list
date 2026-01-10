@@ -1,0 +1,55 @@
+# Data Brokers & People Search Sites
+# Companies that collect, aggregate, and sell personal information
+# Policy: REJECT-DROP (silent, no response back)
+
+# People Search Engines
+spokeo.com
+whitepages.com
+beenverified.com
+intelius.com
+peoplefinder.com
+pipl.com
+truepeoplesearch.com
+fastpeoplesearch.com
+thatsThem.com
+familytreenow.com
+radaris.com
+instantcheckmate.com
+usphonebook.com
+yellowpages.com
+anywho.com
+addresses.com
+peoplefinders.com
+publicrecords.com
+ussearch.com
+zabasearch.com
+peekyou.com
+mylife.com
+
+# Consumer Data Aggregators
+acxiom.com
+liveramp.com
+experian.com
+equifax.com
+transunion.com
+oracle.com/cx/advertising
+bluekai.com
+datalogix.com
+epsilon.com
+corelogic.com
+nielseniq.com
+iqvia.com
+
+# Identity Resolution Platforms
+tapad.com
+drawbridge.com
+crossix.com
+fullcontact.com
+zetaglobal.com
+neustar.biz
+throtle.io
+
+# Data Marketplaces
+narrative.io
+dawex.com
+datarade.ai

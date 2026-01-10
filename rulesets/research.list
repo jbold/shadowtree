@@ -1,0 +1,10 @@
+# Research / Unverified Domains
+# Domains flagged for investigation - move to appropriate category once verified
+# Policy: REJECT (conservative until verified)
+
+# Needs verification - potentially tracking but unclear
+# Add domains here when discovered, research, then move to proper category
+
+# Example format:
+# suspicious-domain.com  # Seen in network logs, needs research
+# unknown-tracker.io     # Flagged by privacy tool, verify purpose

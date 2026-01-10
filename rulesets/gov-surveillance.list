@@ -1,0 +1,39 @@
+# Government, Intelligence & Law Enforcement Adjacent
+# Companies providing surveillance tech to government entities
+# Policy: REJECT-DROP (silent, highest priority blocking)
+
+# Major Surveillance Contractors
+palantir.com
+palantir.io
+clearview.ai
+babelstreet.com
+shadowdragon.io
+
+# Social Media Surveillance
+voyager-labs.com
+cobwebs-tech.com
+mediasonar.com
+sociallinks.io
+maltego.com
+
+# Mobile Forensics & Spyware
+cellebrite.com
+graykey.com
+# NSO Group - uses various domains, research needed
+paragon-solutions.com
+
+# Location & Movement Tracking
+hawkanalytics.com
+babel-street.com
+locate-x.com
+
+# OSINT/Investigation Platforms
+skopenow.com
+pipl.com
+webhose.io
+
+# Biometrics & Facial Recognition
+idemia.com
+nec.com/biometrics
+aware.com
+cognitec.com

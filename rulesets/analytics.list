@@ -1,0 +1,69 @@
+# Analytics & Session Recording
+# Services that track user behavior on websites/apps
+# Policy: REJECT
+
+# Major Analytics Platforms
+google-analytics.com
+analytics.google.com
+googletagmanager.com
+googletagservices.com
+stats.g.doubleclick.net
+adobe.io
+omtrdc.net
+2o7.net
+demdex.net
+mixpanel.com
+amplitude.com
+segment.io
+segment.com
+heap.io
+heapanalytics.com
+kissmetrics.com
+keen.io
+
+# Session Recording / Heatmaps
+hotjar.com
+hotjar.io
+fullstory.com
+fullstorycdn.com
+logrocket.com
+logrocket.io
+mouseflow.com
+crazyegg.com
+luckyorange.com
+smartlook.com
+inspectlet.com
+clicktale.com
+
+# Product Analytics
+pendo.io
+walkme.com
+appcues.com
+whatfix.com
+userpilot.io
+userguiding.com
+
+# Mobile Analytics
+appsflyer.com
+adjust.com
+branch.io
+kochava.com
+singular.net
+tune.com
+
+# A/B Testing & Optimization
+optimizely.com
+vwo.com
+abtasty.com
+conductrics.com
+
+# Customer Data Platforms
+rudderstack.com
+mparticle.com
+tealium.com
+treasuredata.com
+
+# Error Tracking (debatable but often includes PII)
+sentry.io
+bugsnag.com
+rollbar.com

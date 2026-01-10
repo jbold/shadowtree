@@ -1,0 +1,35 @@
+# ISP & Network-Level Tracking
+# ISP injected tracking and supercookies
+# Policy: REJECT-DROP
+
+# Verizon Supercookies / Ad Tech
+precisead.com
+verizonmedia.com
+oath.com
+aol.com/advertising
+vidible.tv
+advertising.aol.com
+
+# AT&T Advertising
+xandr.com
+appnexus.com
+att.com/advertising
+
+# Comcast/Xfinity Advertising
+effectivemeasure.com
+freewheel.com
+spotxchange.com
+
+# T-Mobile Advertising
+t-mobile.com/advertising
+
+# ISP Data Analytics
+ookla.com
+speedtest.net  # Note: May want to whitelist for speed tests
+bandwidth.com
+
+# Deep Packet Inspection Vendors
+# (blocking their infrastructure where identifiable)
+sandvine.com
+procera.com
+allot.com

@@ -1,0 +1,39 @@
+# Domains that MUST NOT be blocked by ShadowTree config
+# Format: domain,expected_policy,reason
+# The test runner will verify these domains DO NOT match REJECT/REJECT-DROP
+
+# Development & Code Hosting
+github.com,PROXY,legitimate-dev
+gitlab.com,PROXY,legitimate-dev
+bitbucket.org,PROXY,legitimate-dev
+stackoverflow.com,PROXY,legitimate-dev
+npmjs.com,PROXY,legitimate-dev
+
+# DNS Providers (our own!)
+cloudflare.com,DIRECT,dns-provider
+quad9.net,DIRECT,dns-provider
+1.1.1.1,DIRECT,dns-provider
+
+# Secure Messaging
+signal.org,PROXY,secure-messaging
+protonmail.com,PROXY,secure-messaging
+tutanota.com,PROXY,secure-messaging
+
+# Privacy Tools
+duckduckgo.com,PROXY,privacy-search
+startpage.com,PROXY,privacy-search
+brave.com,PROXY,privacy-browser
+
+# Essential Services
+apple.com,DIRECT,essential-service
+icloud.com,DIRECT,essential-service
+
+# Banking (examples - should not be blocked)
+chase.com,DIRECT,banking
+bankofamerica.com,DIRECT,banking
+wellsfargo.com,DIRECT,banking
+
+# News & Information
+wikipedia.org,PROXY,information
+reuters.com,PROXY,news
+apnews.com,PROXY,news

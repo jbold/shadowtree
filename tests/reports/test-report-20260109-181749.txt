@@ -1,0 +1,16 @@
+ShadowTree Test Report
+======================
+Date: Fri Jan  9 06:17:49 PM CST 2026
+Config: /var/home/bean/work/ShadowTree/dist/shadowtree.conf
+
+Results:
+  Passed: 54
+  Failed: 3
+  Skipped: 0
+
+Ruleset Coverage:
+  Total rules in config: 287
+  REJECT rules: 146
+  REJECT-DROP rules: 113
+  PROXY rules: 3
+  DIRECT rules: 1
