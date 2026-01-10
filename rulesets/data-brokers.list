@@ -32,7 +32,8 @@ liveramp.com
 experian.com
 equifax.com
 transunion.com
-oracle.com/cx/advertising
+# oracle.com - too broad, use bluekai.com instead (Oracle Data Cloud)
+addthis.com
 bluekai.com
 datalogix.com
 epsilon.com

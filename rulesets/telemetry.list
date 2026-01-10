@@ -58,7 +58,7 @@ device-metrics-us-2.amazon.com
 msh.amazon.com
 
 # Google/Android
-android.clients.google.com/c2dm
+android.clients.google.com
 clientservices.googleapis.com
 app-measurement.com
 firebaseinstallations.googleapis.com
