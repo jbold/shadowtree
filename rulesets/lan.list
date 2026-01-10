@@ -1,0 +1,22 @@
+# Local Network Rules
+# Traffic that should never leave the local network
+# Policy: DIRECT
+
+# Private IPv4 ranges (RFC 1918)
+IP-CIDR,192.168.0.0/16
+IP-CIDR,10.0.0.0/8
+IP-CIDR,172.16.0.0/12
+
+# Loopback
+IP-CIDR,127.0.0.0/8
+
+# Carrier-grade NAT (RFC 6598)
+IP-CIDR,100.64.0.0/10
+
+# Link-local
+IP-CIDR,169.254.0.0/16
+
+# Local domain suffixes
+DOMAIN-SUFFIX,local
+DOMAIN-SUFFIX,localhost
+DOMAIN-SUFFIX,home.arpa

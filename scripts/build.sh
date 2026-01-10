@@ -224,7 +224,7 @@ simplify_for_blocker_mode() {
     log_info "Config simplified for blocker-only mode"
 }
 
-# Step 3.6: Remove external rule references and add our own LAN rules
+# Step 3.6: Remove external rule references
 remove_external_rulesets() {
     log_info "Removing external RULE-SET references (unvetted)..."
 
@@ -233,22 +233,6 @@ remove_external_rulesets() {
     mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
 
     log_info "External RULE-SET references removed"
-
-    # Add our own minimal LAN rules (local network should always be DIRECT)
-    log_info "Adding local network rules..."
-
-    # Insert LAN rules at the start of [Rule] section
-    sed -i '/^\[Rule\]$/a \
-# shadowtree: Local network (always direct)\
-IP-CIDR,192.168.0.0/16,DIRECT\
-IP-CIDR,10.0.0.0/8,DIRECT\
-IP-CIDR,172.16.0.0/12,DIRECT\
-IP-CIDR,127.0.0.0/8,DIRECT\
-IP-CIDR,100.64.0.0/10,DIRECT\
-DOMAIN-SUFFIX,local,DIRECT\
-DOMAIN-SUFFIX,localhost,DIRECT' "$OUTPUT_FILE"
-
-    log_info "Local network rules added"
 }
 
 # Step 4: Insert privacy rulesets
@@ -259,7 +243,9 @@ insert_privacy_rulesets() {
 
     # Define ruleset files and their policies
     # Format: filename:policy
+    # LAN rules come first (local network always direct)
     local rulesets=(
+        "lan.list:DIRECT"
         "data-brokers.list:REJECT-DROP"
         "gov-surveillance.list:REJECT-DROP"
         "location-brokers.list:REJECT-DROP"
@@ -287,7 +273,7 @@ insert_privacy_rulesets() {
                 [[ -z "$line" || "$line" =~ ^# ]] && continue
 
                 # If line already has rule type, use it; otherwise assume DOMAIN-SUFFIX
-                if [[ "$line" =~ ^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD), ]]; then
+                if [[ "$line" =~ ^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD|IP-CIDR|IP-ASN|GEOIP), ]]; then
                     rules_to_insert+="$line,$policy\n"
                 else
                     rules_to_insert+="DOMAIN-SUFFIX,$line,$policy\n"
