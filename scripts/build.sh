@@ -165,6 +165,65 @@ remove_china_services() {
     log_info "China-specific services, MITM, and comments removed"
 }
 
+# Step 3.5: Simplify for blocker-only mode (no proxy nodes)
+simplify_for_blocker_mode() {
+    log_info "Simplifying config for blocker-only mode..."
+
+    # Remove all regional node groups (HK, TW, JP, SG, KR, US)
+    grep -v "^HK_Nodes = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^TW_Nodes = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^JP_Nodes = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^SG_Nodes = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^KR_Nodes = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^US_Nodes = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+
+    # Remove service groups that reference proxy nodes
+    grep -v "^AI = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^YouTube = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Netflix = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Disney+ = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Max = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^TikTok = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Spotify = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Telegram = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Twitter = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Facebook = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^PayPal = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Amazon = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Apple_Services = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Google_Services = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Microsoft_Services = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "^Game_Services = " "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+
+    # Remove RULE-SET entries that route to removed groups (route to DIRECT instead)
+    # These external rulesets are for split-tunneling which we don't need
+    sed -i '/RULE-SET.*,AI$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,YOUTUBE$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,NETFLIX$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,DISNEY+$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,MAX$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,TIKTOK$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,SPOTIFY$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,TELEGRAM$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,TWITTER$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,FACEBOOK$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,PAYPAL$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,AMAZON$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,Apple_Services$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,Google_Services$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,Microsoft_Services$/d' "$OUTPUT_FILE"
+    sed -i '/RULE-SET.*,Game_Services$/d' "$OUTPUT_FILE"
+    sed -i '/DOMAIN-SUFFIX.*,MAX$/d' "$OUTPUT_FILE"
+
+    # Change RULE-SET,*,PROXY to RULE-SET,*,DIRECT (no proxy available)
+    sed -i 's/,PROXY$/,DIRECT/' "$OUTPUT_FILE"
+
+    # Change FINAL,PROXY to FINAL,DIRECT
+    sed -i 's/^FINAL,PROXY$/FINAL,DIRECT/' "$OUTPUT_FILE"
+
+    log_info "Config simplified for blocker-only mode"
+}
+
 # Step 4: Insert privacy rulesets
 insert_privacy_rulesets() {
     log_info "Inserting privacy blocking rules..."
@@ -417,9 +476,10 @@ main() {
     # Apply modifications
     apply_dns_override
     remove_china_services
+    translate_group_names        # Must run before simplify so patterns match
+    simplify_for_blocker_mode
     insert_privacy_rulesets
     strip_comments
-    translate_group_names
     add_section_docs
     add_header
 
