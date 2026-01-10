@@ -64,8 +64,11 @@ app-measurement.com
 firebaseinstallations.googleapis.com
 
 # Smart Home / IoT (general)
-smartthings.com/telemetry
-iot.*.amazonaws.com
+# SmartThings telemetry (full domain - path matching not supported)
+client.smartthings.com
+api.smartthings.com
+# AWS IoT telemetry (specific known endpoints - wildcards in middle not supported)
+DOMAIN-KEYWORD,iot.amazonaws.com
 
 # Samsung Smart TV (2026 Update)
 samsungcloudsolution.net

@@ -34,7 +34,8 @@ webhose.io
 
 # Biometrics & Facial Recognition
 idemia.com
-nec.com/biometrics
+# NEC biometrics division (path matching not supported, using main domain)
+nec.com
 aware.com
 cognitec.com
 
@@ -46,10 +47,12 @@ dahuasecurity.com
 cloud.verkada.com
 api.verkada.com
 relay.verkada.com
-stratocast.com (Genetec)
+# Genetec video surveillance
+stratocast.com
 video.genetec.com
 
 # Intelligence Platforms
 palantirfoundry.com
-rubrik.com (Gov cloud endpoints)
+# Rubrik gov cloud endpoints
+rubrik.com
 anduril.com
