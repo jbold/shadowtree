@@ -66,3 +66,49 @@ firebaseinstallations.googleapis.com
 # Smart Home / IoT (general)
 smartthings.com/telemetry
 iot.*.amazonaws.com
+
+# Samsung Smart TV (2026 Update)
+samsungcloudsolution.net
+samsungcloudsolution.com
+samsungacr.com
+samsungotn.net
+samsungrm.net
+samsungadhub.com
+samsungosp.com
+samsungqbe.com
+ad.samsungads.com
+ads.samsungads.com
+amauthprd.samsungcloudsolution.com
+api-hub.samsungyosemite.com
+connecttv.pelmorex.com
+abtauthprd.samsungcloudsolution.com
+
+# LG Smart TV (2026 Update)
+ad.lgappstv.com
+lgad.cjpowercast.com.edgesuite.net
+ngfts.lge.com
+common.lgthinq.com
+eic-iotservice.lgthinq.com
+eic-service.lgthinq.com
+eic-ngfts.lge.com
+eic.cdpsvc.lgtvcommon.com
+eic.lgtviot.com
+lgtvonline.lge.com
+lg-channelplus-de-beacons.xumo.com
+lg-channelplus-eu-beacons.xumo.com
+noti.lgthinq.com
+snu.lge.com
+
+# Roku (2026 Update)
+ads.roku.com
+cloudservices.roku.com
+roku.admeasurement.com
+lat-services.api.data.roku.com
+
+# General/Cross-device Telemetry
+samba.tv
+events.cid.samba.tv
+mtrcs.samba.tv
+pixel.mtrcs.samba.tv
+customerevents.netflix.com
+ichnaea.netflix.com

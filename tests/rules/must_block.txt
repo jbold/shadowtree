@@ -39,3 +39,13 @@ gravy.com,REJECT-DROP,location-broker
 telemetry.microsoft.com,REJECT,telemetry
 metrics.apple.com,REJECT,telemetry
 samsungads.com,REJECT,telemetry
+
+# 2026 Additions
+samba.tv,REJECT-DROP,telemetry
+samsungacr.com,REJECT-DROP,telemetry
+lgsmartad.com,REJECT-DROP,telemetry
+ads.roku.com,REJECT-DROP,telemetry
+hik-connect.com,REJECT-DROP,gov-surveillance
+palantirfoundry.com,REJECT-DROP,gov-surveillance
+unacast.com,REJECT-DROP,location-broker
+inrix.com,REJECT-DROP,location-broker
