@@ -146,7 +146,23 @@ remove_china_services() {
     sed -i 's|,www\.baidu\.com||g' "$OUTPUT_FILE"
     sed -i 's|,www\.163\.com||g' "$OUTPUT_FILE"
 
-    log_info "China-specific services removed"
+    # Remove [URL Rewrite] and [MITM] sections (Google CN fixes not needed for US)
+    # We use sed to delete from the section header to the next section or end of file
+    sed -i '/^\[URL Rewrite\]/,/^\[/ { /^\[/!d; /\[URL Rewrite\]/d; }' "$OUTPUT_FILE"
+    sed -i '/^\[MITM\]/,/^\[/ { /^\[/!d; /\[MITM\]/d; }' "$OUTPUT_FILE"
+
+    # Remove confusing Chinese DNS comments
+    grep -v "# dns-server =" "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "# 1、DNS-over-HTTPS" "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "# 2、DNS-over-HTTP" "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "# 3、DNS-over-QUIC" "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "# 4、DNS-over-TLS" "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "# 普通 DNS 示例" "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "# 加密 DNS 示例" "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "dns.alidns.com" "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    grep -v "223.5.5.5" "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+
+    log_info "China-specific services, MITM, and comments removed"
 }
 
 # Step 4: Insert privacy rulesets

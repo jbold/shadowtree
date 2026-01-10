@@ -99,28 +99,26 @@ Original skip-proxy included:
 
 ### URL Rewrites
 
-**Status**: ✅ KEPT (beneficial)
+**Status**: ⚠️ REMOVED BY SHADOWTREE
 
 ```
 ^https?://(www.)?g.cn https://www.google.com 302
 ^https?://(www.)?google.cn https://www.google.com 302
 ```
 
-Redirects Chinese Google domains to google.com. Harmless for US users.
+Redirects Chinese Google domains to google.com. Removed to reduce config complexity and potential user alarm.
 
 ---
 
 ### MITM Configuration
 
-**Status**: ✅ REVIEWED - NO CONCERNS
+**Status**: ⚠️ REMOVED BY SHADOWTREE
 
 ```
 hostname = *.google.cn
 ```
 
-Only decrypts google.cn traffic for URL rewriting. No suspicious MITM targets.
-
-**Note**: MITM decryption requires user to install a certificate. The config does not auto-enable this.
+Only decrypts google.cn traffic for URL rewriting. Removed along with URL rewrites.
 
 ---
 
