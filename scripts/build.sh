@@ -241,6 +241,31 @@ remove_external_rulesets() {
     log_info "External RULE-SET references removed"
 }
 
+# Step 3.7: Insert external curated blocklists
+insert_external_rulesets() {
+    log_info "Inserting external blocklists (HaGeZi Pro)..."
+    
+    # We insert this immediately BEFORE the FINAL rule.
+    # This means all local rules (LAN, specific user blocks) take priority.
+    # HaGeZi acts as a massive "safety net" for anything not explicitly handled.
+    
+    local hagezi_rule="DOMAIN-SET,https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/pro.txt,REJECT"
+    
+    # Insert before the FINAL rule
+    awk -v rule="$hagezi_rule" '
+        /^FINAL,/ {
+            print ""
+            print "# External Blocklists"
+            print rule
+            print $0
+            next
+        }
+        { print }
+    ' "$OUTPUT_FILE" > "$OUTPUT_FILE.tmp" && mv "$OUTPUT_FILE.tmp" "$OUTPUT_FILE"
+    
+    log_info "External blocklists inserted"
+}
+
 # Step 4: Insert privacy rulesets
 insert_privacy_rulesets() {
     log_info "Inserting privacy blocking rules..."
@@ -449,7 +474,7 @@ validate_syntax() {
     done
 
     # Check for malformed rules (basic pattern matching)
-    local rule_pattern='^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD|RULE-SET|GEOIP|FINAL|IP-CIDR|IP-ASN|USER-AGENT|URL-REGEX|DST-PORT|AND|NOT|OR),'
+    local rule_pattern='^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD|RULE-SET|DOMAIN-SET|GEOIP|FINAL|IP-CIDR|IP-ASN|USER-AGENT|URL-REGEX|DST-PORT|AND|NOT|OR),'
 
     # Check lines in [Rule] section
     local in_rule_section=0
@@ -508,7 +533,8 @@ main() {
     translate_group_names        # Must run before simplify so patterns match
     simplify_for_blocker_mode
     remove_external_rulesets     # Remove unvetted external rule lists, add our LAN rules
-    insert_privacy_rulesets
+    insert_privacy_rulesets      # Add local rules first (Priority)
+    insert_external_rulesets     # Add HaGeZi Pro (Safety Net)
     strip_comments
     add_section_docs
     add_header
