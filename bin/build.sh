@@ -42,7 +42,26 @@ insert_rules() {
     # 2.1 LAN / Whitelist (DIRECT) - Must be first
     if [ -f "$RULESETS_DIR/lan.list" ]; then
         echo "# Local Network / Whitelist" >> "$OUTPUT_FILE"
-        cat "$RULESETS_DIR/lan.list" >> "$OUTPUT_FILE"
+        # Process line by line to append ,DIRECT
+        while IFS= read -r line || [ -n "$line" ]; do
+            # Skip comments and empty lines
+            [[ -z "$line" || "$line" =~ ^# ]] && continue
+            
+            # Check format
+            local rule_line=""
+            if [[ "$line" =~ ^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD|IP-CIDR|IP-ASN|GEOIP), ]]; then
+                rule_line="$line"
+            else
+                rule_line="DOMAIN-SUFFIX,$line"
+            fi
+
+            # Append DIRECT if no policy present
+            if [[ "$rule_line" =~ ,(DIRECT|REJECT|REJECT-DROP|PROXY|Isolate)$ ]]; then
+                echo "$rule_line" >> "$OUTPUT_FILE"
+            else
+                echo "$rule_line,DIRECT" >> "$OUTPUT_FILE"
+            fi
+        done < "$RULESETS_DIR/lan.list"
     fi
     
     # 2.2 Local Privacy Rules (REJECT)
