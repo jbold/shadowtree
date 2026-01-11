@@ -260,6 +260,7 @@ insert_privacy_rulesets() {
         "advertising.list:REJECT"
         "fingerprinting.list:REJECT"
         "isp-tracking.list:REJECT-DROP"
+        "mobile-additions.list:REJECT"
     )
 
     for ruleset_entry in "${rulesets[@]}"; do
@@ -279,10 +280,18 @@ insert_privacy_rulesets() {
                 [[ -z "$line" || "$line" =~ ^# ]] && continue
 
                 # If line already has rule type, use it; otherwise assume DOMAIN-SUFFIX
+                local rule_line=""
                 if [[ "$line" =~ ^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD|IP-CIDR|IP-ASN|GEOIP), ]]; then
-                    rules_to_insert+="$line,$policy\n"
+                    rule_line="$line"
                 else
-                    rules_to_insert+="DOMAIN-SUFFIX,$line,$policy\n"
+                    rule_line="DOMAIN-SUFFIX,$line"
+                fi
+
+                # Check if rule already has a policy (DIRECT, REJECT, PROXY, etc.)
+                if [[ "$rule_line" =~ ,(DIRECT|REJECT|REJECT-DROP|PROXY|Isolate|.*_Nodes|.*_Services)$ ]]; then
+                    rules_to_insert+="$rule_line\n"
+                else
+                    rules_to_insert+="$rule_line,$policy\n"
                 fi
             done < "$filepath"
         fi
