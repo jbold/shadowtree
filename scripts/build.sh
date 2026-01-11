@@ -252,14 +252,14 @@ insert_privacy_rulesets() {
     # LAN rules come first (local network always direct)
     local rulesets=(
         "lan.list:DIRECT"
-        "data-brokers.list:REJECT-DROP"
-        "gov-surveillance.list:REJECT-DROP"
-        "location-brokers.list:REJECT-DROP"
+        "data-brokers.list:REJECT"
+        "gov-surveillance.list:REJECT"
+        "location-brokers.list:REJECT"
         "analytics.list:REJECT"
         "telemetry.list:REJECT"
         "advertising.list:REJECT"
         "fingerprinting.list:REJECT"
-        "isp-tracking.list:REJECT-DROP"
+        "isp-tracking.list:REJECT"
         "mobile-additions.list:REJECT"
     )
 
