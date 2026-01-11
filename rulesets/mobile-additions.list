@@ -379,3 +379,4 @@ DOMAIN-SUFFIX,bidding.capitalautoauction.com,REJECT
 DOMAIN-SUFFIX,www.mrsmini.co.uk,REJECT
 DOMAIN-SUFFIX,mobiletelemetry.ebay.com,REJECT
 DOMAIN-SUFFIX,adssettings.google.com,REJECT
+smetrics.cnn.com

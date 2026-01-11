@@ -90,7 +90,7 @@ insert_rules() {
     # 2.3 HaGeZi Pro (Safety Net)
     echo "" >> "$OUTPUT_FILE"
     echo "# External Safety Net (HaGeZi Pro)" >> "$OUTPUT_FILE"
-    echo "DOMAIN-SET,https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/pro.txt,REJECT" >> "$OUTPUT_FILE"
+    echo "RULE-SET,https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt,REJECT" >> "$OUTPUT_FILE"
     
     # 2.4 Final Fallback
     echo "" >> "$OUTPUT_FILE"

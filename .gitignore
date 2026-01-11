@@ -1,2 +1,3 @@
 tests/reports/
 shadowtree.db
+proxy-*.db
