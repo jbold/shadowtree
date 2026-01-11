@@ -1,6 +1,6 @@
 # Domains that MUST be blocked by shadowtree config
 # Format: domain,expected_policy,category
-# The test runner will verify these domains match REJECT or REJECT-DROP
+# The test runner will verify these domains match REJECT or REJECT
 
 # Analytics - should be REJECT
 google-analytics.com,REJECT,analytics
@@ -16,24 +16,24 @@ taboola.com,REJECT,advertising
 criteo.com,REJECT,advertising
 adroll.com,REJECT,advertising
 
-# Data Brokers - should be REJECT-DROP
-spokeo.com,REJECT-DROP,data-broker
-whitepages.com,REJECT-DROP,data-broker
-beenverified.com,REJECT-DROP,data-broker
-acxiom.com,REJECT-DROP,data-broker
-liveramp.com,REJECT-DROP,data-broker
+# Data Brokers - should be REJECT
+spokeo.com,REJECT,data-broker
+whitepages.com,REJECT,data-broker
+beenverified.com,REJECT,data-broker
+acxiom.com,REJECT,data-broker
+liveramp.com,REJECT,data-broker
 
-# Government Surveillance - should be REJECT-DROP
-palantir.com,REJECT-DROP,gov-surveillance
-clearview.ai,REJECT-DROP,gov-surveillance
-babelstreet.com,REJECT-DROP,gov-surveillance
-shadowdragon.io,REJECT-DROP,gov-surveillance
+# Government Surveillance - should be REJECT
+palantir.com,REJECT,gov-surveillance
+clearview.ai,REJECT,gov-surveillance
+babelstreet.com,REJECT,gov-surveillance
+shadowdragon.io,REJECT,gov-surveillance
 
-# Location Brokers - should be REJECT-DROP
-safegraph.com,REJECT-DROP,location-broker
-placer.ai,REJECT-DROP,location-broker
-cuebiq.com,REJECT-DROP,location-broker
-gravy.com,REJECT-DROP,location-broker
+# Location Brokers - should be REJECT
+safegraph.com,REJECT,location-broker
+placer.ai,REJECT,location-broker
+cuebiq.com,REJECT,location-broker
+gravy.com,REJECT,location-broker
 
 # Telemetry - should be REJECT
 telemetry.microsoft.com,REJECT,telemetry
@@ -41,11 +41,11 @@ metrics.apple.com,REJECT,telemetry
 samsungads.com,REJECT,telemetry
 
 # 2026 Additions
-samba.tv,REJECT-DROP,telemetry
-samsungacr.com,REJECT-DROP,telemetry
-lgsmartad.com,REJECT-DROP,telemetry
-ads.roku.com,REJECT-DROP,telemetry
-hik-connect.com,REJECT-DROP,gov-surveillance
-palantirfoundry.com,REJECT-DROP,gov-surveillance
-unacast.com,REJECT-DROP,location-broker
-inrix.com,REJECT-DROP,location-broker
+samba.tv,REJECT,telemetry
+samsungacr.com,REJECT,telemetry
+lgsmartad.com,REJECT,telemetry
+ads.roku.com,REJECT,telemetry
+hik-connect.com,REJECT,gov-surveillance
+palantirfoundry.com,REJECT,gov-surveillance
+unacast.com,REJECT,location-broker
+inrix.com,REJECT,location-broker
