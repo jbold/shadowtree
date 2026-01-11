@@ -1,3 +1,10 @@
+# Local Data (DBs, Logs)
+data/*
+!data/.gitkeep
+*.db
+
+# Test Reports
 tests/reports/
-shadowtree.db
-proxy-*.db
+
+# OS Junk
+.DS_Store

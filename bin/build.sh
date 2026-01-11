@@ -9,9 +9,9 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
-TEMPLATE_FILE="$PROJECT_ROOT/templates/base.conf"
+TEMPLATE_FILE="$PROJECT_ROOT/config/templates/base.conf"
 OUTPUT_FILE="$PROJECT_ROOT/dist/shadowtree.conf"
-RULESETS_DIR="$PROJECT_ROOT/rulesets"
+RULESETS_DIR="$PROJECT_ROOT/config/rulesets"
 
 # Colors
 GREEN='\033[0;32m'
