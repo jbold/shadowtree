@@ -151,6 +151,50 @@ test_syntax() {
         log_pass "Chinese services removed from active config"
     fi
 
+    # STRICT RULE SYNTAX CHECK
+    # Ensure every rule has a policy
+    local rule_errors=0
+    local rules=$(extract_rules "$CONFIG_FILE")
+    while IFS= read -r line; do
+        # Ignore empty or comment lines (already handled by extract_rules but being safe)
+        [[ -z "$line" ]] && continue
+        
+        # Check for comma count.
+        # Valid: TYPE,VALUE,POLICY (2 commas)
+        # Valid: FINAL,POLICY (1 comma)
+        # Invalid: TYPE,VALUE (1 comma, unless it's FINAL)
+        
+        local commas="${line//[^,]}"
+        local comma_count="${#commas}"
+        
+        if [[ "$line" =~ ^FINAL, ]]; then
+            # FINAL requires 1 comma (FINAL,DIRECT)
+            if [ "$comma_count" -lt 1 ]; then
+                log_fail "Malformed FINAL rule: $line"
+                ((rule_errors++))
+            fi
+        else
+            # Normal rules require 2 commas (IP-CIDR,1.2.3.4,DIRECT)
+            # Exception: DOMAIN-SET (URL can have commas? No, usually not in URL)
+            # Actually, some complex rules might have options.
+            # But the minimal standard is TYPE,VALUE,POLICY.
+            
+            # Allow RULE-SET and DOMAIN-SET to have >2 commas if URL has them?
+            # But basic check: Does it end with a policy?
+            if ! [[ "$line" =~ ,(DIRECT|REJECT|REJECT-DROP|PROXY|Isolate|.*_Nodes|.*_Services)$ ]]; then
+                 log_fail "Rule missing policy: $line"
+                 ((rule_errors++))
+            fi
+        fi
+    done <<< "$rules"
+
+    if [ $rule_errors -gt 0 ]; then
+        log_fail "Found $rule_errors malformed rules"
+        ((errors+=rule_errors))
+    else
+        log_pass "All rules have valid policies"
+    fi
+
     return $errors
 }
 
