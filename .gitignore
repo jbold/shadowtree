@@ -7,4 +7,4 @@ data/*
 tests/reports/
 
 # OS Junk
-.DS_Store
+.DS_Store__pycache__/
